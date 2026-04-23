@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HPE Morpheus User Group</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #0f62fe;
+      --accent-hover: #0b4fd1;
+      --border: #dbe3ee;
+      --success-bg: #ecfdf3;
+      --success-text: #166534;
+      --error-bg: #fef2f2;
+      --error-text: #991b1b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 640px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      padding: 40px 32px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #e8f0ff;
+      color: #1d4ed8;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 34px;
+      line-height: 1.15;
+    }
+
+    p {
+      margin: 0 0 16px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    form {
+      margin-top: 28px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .input-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    input[type="email"] {
+      flex: 1 1 320px;
+      min-width: 0;
+      padding: 14px 16px;
+      font-size: 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input[type="email"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(15, 98, 254, 0.12);
+    }
+
+    button {
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      background: var(--accent);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background: var(--accent-hover);
+    }
+
+    .note {
+      margin-top: 14px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .message {
+      display: none;
+      margin-top: 20px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .message.success {
+      display: block;
+      background: var(--success-bg);
+      color: var(--success-text);
+      border: 1px solid #bbf7d0;
+    }
+
+    .message.error {
+      display: block;
+      background: var(--error-bg);
+      color: var(--error-text);
+      border: 1px solid #fecaca;
+    }
+
+    .footer {
+      margin-top: 28px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        padding: 28px 20px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .input-row {
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="badge">Intresseanmälan</div>
+    <h1>HPE Morpheus User Group</h1>
+    <p>
+      Är du intresserad av att gå med i HPE Morpheus User Group? Fyll i din e-postadress så hör vi av oss med mer information om kommande träffar, diskussioner och aktiviteter.
+    </p>
+
+    När formuläret skickas sparas intresseanmälan via Formspree så att vi kan följa upp med mer information om HPE Morpheus User Group.
+      <label for="email">E-postadress</label>
+      <div class="input-row">
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="namn@foretag.se"
+          autocomplete="email"
+          required
+        />
+        <button type="submit">Anmäl intresse</button>
+      </div>
+      <div class="note">
+        Det här formuläret visar gränssnittet. För att faktiskt spara adresser behöver du koppla det till till exempel Formspark, Netlify Forms, Formspree eller ett eget backend-API.
+      </div>
+      <div id="message" class="message" aria-live="polite"></div>
+    </form>
+
+    <div class="footer">
+      Genom att skicka in formuläret godkänner användaren att bli kontaktad om HPE Morpheus User Group. Vi använder e-postadressen enbart för att hantera intresseanmälan och återkoppling kring gruppen.
+    </div>
+  </main>
+
+  <script>
+    const form = document.getElementById('interestForm');
+    const emailInput = document.getElementById('email');
+    const messageBox = document.getElementById('message');
+
+    form.addEventListener('submit', async function (event) {
+      event.preventDefault();
+
+      const email = emailInput.value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailPattern.test(email)) {
+        messageBox.className = 'message error';
+        messageBox.textContent = 'Ange en giltig e-postadress.';
+        return;
+      }
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          messageBox.className = 'message success';
+          messageBox.textContent = 'Tack. Din intresseanmälan har skickats in.';
+          form.reset();
+        } else {
+          messageBox.className = 'message error';
+          messageBox.textContent = 'Det gick inte att skicka formuläret just nu. Försök igen om en stund.';
+        }
+      } catch (error) {
+        messageBox.className = 'message error';
+        messageBox.textContent = 'Ett tekniskt fel uppstod. Kontrollera anslutningen och försök igen.';
+      }
+    });
+  </script>
+</body>
+</html>
