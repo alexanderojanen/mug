@@ -35,7 +35,7 @@
 
     .container {
       width: 100%;
-      max-width: 640px;
+      max-width: 720px;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 20px;
@@ -67,8 +67,32 @@
       color: var(--muted);
     }
 
+    .intro {
+      margin-bottom: 24px;
+    }
+
+    .subheadline {
+      margin: 0 0 12px;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .hero-image-wrapper {
+      margin: 24px 0 28px;
+    }
+
+    .hero-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
+    }
+
     form {
-      margin-top: 28px;
+      margin-top: 0;
     }
 
     label {
@@ -110,11 +134,15 @@
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      transition: background 0.2s ease;
+      transition: background 0.2s ease, transform 0.1s ease;
     }
 
     button:hover {
       background: var(--accent-hover);
+    }
+
+    button:active {
+      transform: translateY(1px);
     }
 
     .note {
@@ -153,12 +181,20 @@
     }
 
     @media (max-width: 560px) {
+      body {
+        padding: 16px;
+      }
+
       .container {
         padding: 28px 20px;
       }
 
       h1 {
         font-size: 28px;
+      }
+
+      .subheadline {
+        font-size: 16px;
       }
 
       .input-row {
@@ -168,17 +204,32 @@
       button {
         width: 100%;
       }
+
+      .hero-image-wrapper {
+        margin: 20px 0 24px;
+      }
     }
   </style>
 </head>
 <body>
   <main class="container">
     <div class="badge">Get notified</div>
-    <h1>HPE Morpheus User Group</h1>
-    <p><strong>Created for professionals working with HPE Morpheus.</strong></p>
-    <p>
-      Want to stay informed about the HPE Morpheus User Group? Enter your email address and we’ll reach out with more information about upcoming meetups, discussions, and activities.
-    </p>
+
+    <div class="intro">
+      <h1>HPE Morpheus User Group</h1>
+      <p class="subheadline">Created for professionals working with HPE Morpheus.</p>
+      <p>
+        Want to stay informed about the HPE Morpheus User Group? Enter your email address and we’ll reach out with more information about upcoming meetups, discussions, and activities.
+      </p>
+    </div>
+
+    <div class="hero-image-wrapper">
+      <img
+        src="mug-image.png"
+        alt="Professional branded mug image for the HPE Morpheus User Group"
+        class="hero-image"
+      />
+    </div>
 
     <form id="interestForm" action="https://formspree.io/f/xykllwkk" method="POST" novalidate>
       <label for="email">Email address</label>
