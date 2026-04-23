@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -173,35 +173,35 @@
 </head>
 <body>
   <main class="container">
-    <div class="badge">Intresseanmälan</div>
+    <div class="badge">Interest Registration</div>
     <h1>HPE Morpheus User Group</h1>
     <p>
-      Är du intresserad av att gå med i HPE Morpheus User Group? Fyll i din e-postadress så hör vi av oss med mer information om kommande träffar, diskussioner och aktiviteter.
+      Interested in joining the HPE Morpheus User Group? Enter your email address and we’ll reach out with more information about upcoming meetups, discussions, and activities.
     </p>
 
     <form id="interestForm" action="https://formspree.io/f/xykllwkk" method="POST" novalidate>
-      <label for="email">E-postadress</label>
+      <label for="email">Email address</label>
       <div class="input-row">
         <input
           id="email"
           name="email"
           type="email"
-          placeholder="namn@foretag.se"
+          placeholder="name@company.com"
           autocomplete="email"
           required
         />
-        <button type="submit">Anmäl intresse</button>
+        <button type="submit">Register interest</button>
       </div>
 
       <div class="note">
-        När formuläret skickas sparas intresseanmälan via Formspree så att vi kan följa upp med mer information om HPE Morpheus User Group.
+        When you submit the form, your interest will be stored via Formspree so we can follow up with more information about the HPE Morpheus User Group.
       </div>
 
       <div id="message" class="message" aria-live="polite"></div>
     </form>
 
     <div class="footer">
-      Genom att skicka in formuläret godkänner användaren att bli kontaktad om HPE Morpheus User Group. Vi använder e-postadressen enbart för att hantera intresseanmälan och återkoppling kring gruppen.
+      By submitting this form, you agree to be contacted regarding the HPE Morpheus User Group. Your email address will only be used to manage your interest registration and follow-up communication.
     </div>
   </main>
 
@@ -218,7 +218,7 @@
 
       if (!emailPattern.test(email)) {
         messageBox.className = 'message error';
-        messageBox.textContent = 'Ange en giltig e-postadress.';
+        messageBox.textContent = 'Please enter a valid email address.';
         return;
       }
 
@@ -235,15 +235,15 @@
 
         if (response.ok) {
           messageBox.className = 'message success';
-          messageBox.textContent = 'Tack. Din intresseanmälan har skickats in.';
+          messageBox.textContent = 'Thank you. Your interest has been registered.';
           form.reset();
         } else {
           messageBox.className = 'message error';
-          messageBox.textContent = 'Det gick inte att skicka formuläret just nu. Försök igen om en stund.';
+          messageBox.textContent = 'Something went wrong. Please try again later.';
         }
       } catch (error) {
         messageBox.className = 'message error';
-        messageBox.textContent = 'Ett tekniskt fel uppstod. Kontrollera anslutningen och försök igen.';
+        messageBox.textContent = 'A technical error occurred. Please check your connection and try again.';
       }
     });
   </script>
